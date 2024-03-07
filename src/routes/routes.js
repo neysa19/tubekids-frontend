@@ -1,19 +1,18 @@
 import {BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "../Login/Login.js";
-import HomePage from "../HomePage/HomePage.js";
-import Navbar from "../NavBar/NavBar.js";
-import Logout from "../Logout/Logout.js";
+import HomePage from "../components/HomePage/HomePage.js";
+import NavBar from "../components/NavBar/NavBar.js";
+import AboutPage from "../components/About/About.js"
 
-function AllRoutes(){
-    return(
-        <BrowserRouter>
+function routes() {
+    return (
+      <BrowserRouter>
+        <NavBar />
         <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/homePage" element={<HomePage />} />
-            <Route path="/navBar" element={<Navbar />} />
-            <Route path="/Logout" element={<Logout/>} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+        
         </Routes>
-        </BrowserRouter>
+      </BrowserRouter>
     );
-}
-export default AllRoutes;
+  }
+export default routes;

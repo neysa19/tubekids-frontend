@@ -1,12 +1,13 @@
 import React from 'react';
-import AllRoutes from './components/routes/routes.js';
+import ARoutes from './routes/routes';
 
 const App = () => {
   return (
     <div>
-      <AllRoutes/>     
+      <ARoutes /> 
     </div>
   );
 };
+
 
 export default App;
