@@ -1,0 +1,26 @@
+.home-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f8f9fa; /* Cambia el color de fondo según tu preferencia */
+    padding: 20px; /* Añade espacio alrededor del contenido */
+    text-align: center; /* Centra el texto horizontalmente */
+  }
+  
+  .btn-perfiles {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease; /* Agrega transición suave al color de fondo */
+  }
+  
+  .btn-perfiles:hover {
+    background-color: #0056b3;
+  }
+  

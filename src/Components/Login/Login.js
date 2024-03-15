@@ -3,6 +3,8 @@ import axios from 'axios';
 import './Login.css'; 
 import { Link, useNavigate } from 'react-router-dom'; 
 import swal from 'sweetalert'; 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Form, Button, Alert } from 'react-bootstrap';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -29,12 +31,11 @@ const Login = () => {
     e.preventDefault(); 
     try {
       const response = await axios.post('http://localhost:3000/login', { email, password });
-      // Almacena los datos de usuario en la sesión de almacenamiento local
       sessionStorage.setItem("validacion", response.data.validacion);
       sessionStorage.setItem("userId", response.data.userId);
       sessionStorage.setItem("nombre", response.data.name);
       mostrarAlertaSuccess();
-      navigate('/home'); // Cambia '/home' a la ruta deseada después del inicio de sesión exitoso
+      navigate('/home');
     } catch (error) {
       mostrarError(); 
       console.error(error.response.data);
@@ -42,16 +43,22 @@ const Login = () => {
   };
 
   return (
-    <div className='all'>
-      <h2 className='title'>Login</h2>
-      <form className='form' onSubmit={handleLogin}>
-        <input type="email" placeholder="Correo electrónico" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        <button type="submit" className='btn-start'>Iniciar sesión</button>
-        <Link to="/register" className='btn-register'> Registrarse</Link> 
-      </form>
-    </div>
-  );
+    <Container className="login-container">
+    <h2 className="text-center mb-4">Login</h2>
+    <Form className="login-form" onSubmit={handleLogin}>
+      <Form.Group controlId="formEmail">
+        <Form.Label>Correo electrónico</Form.Label>
+        <Form.Control type="email" placeholder="Ingrese su correo electrónico" value={email} onChange={(e) => setEmail(e.target.value)} required />
+      </Form.Group>
+      <Form.Group controlId="formPassword">
+        <Form.Label>Contraseña</Form.Label>
+        <Form.Control type="password" placeholder="Ingrese su contraseña" value={password} onChange={(e) => setPassword(e.target.value)} required />
+      </Form.Group>
+      <Button variant="primary" type="submit" className="btn-start">Iniciar sesión</Button>
+      <Link to="/register" className="btn-register">Registrarse</Link>
+    </Form>
+  </Container>
+);
 };
 
 export default Login;

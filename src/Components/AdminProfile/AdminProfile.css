@@ -1,0 +1,12 @@
+.admin-profile-container {
+    margin-top: 20px;
+  }
+  
+  .table th,
+  .table td {
+    vertical-align: middle !important; /* Centra el contenido verticalmente en las celdas */
+  }
+  
+  .btn {
+    margin-right: 5px; /* Añade espacio entre los botones */
+  }

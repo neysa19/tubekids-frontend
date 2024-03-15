@@ -1,64 +1,45 @@
-.all {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #000; 
-    color: #fff; 
-  }
-  
-  .title {
-    margin-bottom: 20px;
-    font-size: 70px;
-    letter-spacing: 10px;
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  input[type="email"],
-  input[type="password"] {
-    width: 300px;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #333; 
-    color: #fff; 
-  }
-  
-  .btn-start {
-    width: 500px;
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3); 
-    font-size: 25px;
+/* Estilos para el contenedor del formulario de inicio de sesión */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Toma toda la altura de la pantalla */
+  background-color: #fffefe; /* Fondo negro */
+  color: #000000; /* Texto blanco */
+  height: 100%;
+  width: 100%;
+}
 
-  }
-  
-  .btn-start:hover {
-    background-color: #0056b3;
-  }
-  
-  .btn-register {
-    margin-top: 10px;
-    color: #007bff;
-    text-decoration: none;
-    font-family: 'Montserrat', sans-serif; 
-    font-weight: 300; 
-  }
-  
-  .btn-register:hover {
-    text-decoration: underline;
-  }
-  
+/* Estilos para el formulario de inicio de sesión */
+.login-form {
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro semi-transparente */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #ffffff; /* Texto blanco */
+}
+
+/* Estilos para el botón de inicio de sesión */
+.btn-start {
+  width: 100%; /* Ancho completo del contenedor */
+  margin-top: 10px; /* Espacio superior */
+  padding: 8px 16px; /* Tamaño del botón */
+  font-size: 14px; /* Tamaño de fuente */
+}
+
+/* Estilos para el botón de registro */
+.btn-register {
+  display: block;
+  text-align: center;
+  margin-top: 5px; /* Espacio superior */
+  color: #007bff; /* Color azul */
+  font-size: 12px; /* Tamaño de fuente */
+}
+
+.btn-register:hover {
+  text-decoration: none;
+}
