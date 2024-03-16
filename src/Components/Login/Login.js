@@ -55,7 +55,7 @@ const Login = () => {
         <Form.Control type="password" placeholder="Ingrese su contraseña" value={password} onChange={(e) => setPassword(e.target.value)} required />
       </Form.Group>
       <Button variant="primary" type="submit" className="btn-start">Iniciar sesión</Button>
-      <Link to="/register" className="btn-register">Registrarse</Link>
+      <Link to="/createUser" className="btn-register">Registrarse</Link>
     </Form>
   </Container>
 );
