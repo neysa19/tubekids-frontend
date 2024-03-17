@@ -7,8 +7,7 @@
   min-height: 100vh; /* Toma toda la altura de la pantalla */
   background-color: #fffefe; /* Fondo negro */
   color: #000000; /* Texto blanco */
-  height: 100%;
-  width: 100%;
+
 }
 
 /* Estilos para el formulario de inicio de sesión */

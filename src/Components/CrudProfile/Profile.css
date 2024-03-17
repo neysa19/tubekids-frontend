@@ -1,0 +1,64 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.avatar-container{
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.selected-avatar {
+    text-align: center;
+}
+
+
+.avatar-options {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.avatar-image {
+    width: 90px;
+    height: auto;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    margin: 1%;
+
+}
+
+.avatar-image:hover {
+    transform: scale(1.1);
+}

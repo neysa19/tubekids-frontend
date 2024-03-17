@@ -31,10 +31,8 @@ const Login = () => {
     e.preventDefault(); 
     try {
       const response = await axios.post('http://localhost:3000/login', { email, password });
-      sessionStorage.setItem("validacion", response.data.validacion);
       sessionStorage.setItem("userId", response.data.userId);
-      sessionStorage.setItem("nombre", response.data.name);
-      mostrarAlertaSuccess();
+      sessionStorage.setItem("email", email);
       navigate('/home');
     } catch (error) {
       mostrarError(); 

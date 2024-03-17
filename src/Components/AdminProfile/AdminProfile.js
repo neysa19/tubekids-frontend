@@ -1,50 +1,62 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './AdminProfile.css'; // Importa los estilos CSS personalizados
+import './AdminProfile.css';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import './AdminProfile.css';
 
-function AdminProfile() {
-    // Estado para almacenar la lista de perfiles
-    const [profiles, setProfiles] = useState([
-      { id: 1, name: 'Perfil 1', email: 'perfil1@example.com' },
-      { id: 2, name: 'Perfil 2', email: 'perfil2@example.com' },
-      { id: 3, name: 'Perfil 3', email: 'perfil3@example.com' },
-    ]);
+const AdminProfile = () => {
+  const [profiles, setProfiles] = useState([]);
+
+  const userId = sessionStorage.getItem('userId'); 
+  console.log(userId);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/getProfilesByUserId/${userId}`) // Agregar userId a la URL
+      .then((response) => {
+        console.log(response.data);
+        setProfiles(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [userId]);
   
-    // Función para eliminar un perfil por su ID
-    const deleteProfile = (id) => {
-      setProfiles(profiles.filter((profile) => profile.id !== id));
-    };
-  
-    return (
-      <div className="admin-profile-container">
-        <h2>Lista de Perfiles</h2>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Email</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {profiles.map((profile) => (
-              <tr key={profile.id}>
-                <td>{profile.id}</td>
-                <td>{profile.name}</td>
-                <td>{profile.email}</td>
-                <td>
-                  <Button variant="info" size="sm">Editar</Button>{' '}
-                  <Button variant="danger" size="sm" onClick={() => deleteProfile(profile.id)}>Eliminar</Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+
+  const deleteProfile = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/deleteProfile/${id}`); 
+      setProfiles(prevProfiles => prevProfiles.filter(profile => profile._id !== id)); // Actualizar el estado local
+      alert('Perfil eliminado correctamente.');
+      navigate("/adminProfile");
+    } catch (error) {
+      console.error(error);
+      alert('Error al eliminar el perfil.');
+    }
+  };
+
+  return (
+    <div className="admin-profile-container">
+      <h2>Lista de Perfiles</h2>
+      <Link to="/createProfile" className="btn btn-primary">Crear Perfil Nuevo</Link>
+      <div className="profile-list">
+        {profiles.map((profile) => (
+          <div key={profile._id} className="profile-item">
+            <img src={profile.avatar} alt="Avatar" className="avatar" />
+            <p>Nombre: {profile.nombre}</p>
+            <p>Edad: {profile.edad}</p>
+            <div className="action-buttons">
+            <Link to={`/editProfile/${profile._id}`} className="btn btn-info">Editar</Link> {/* Redirige a la página de edición y pasa el ID del perfil */}
+              <button className="btn btn-danger" onClick={() => deleteProfile(profile._id)}>Eliminar</button>
+            </div>
+          </div>
+        ))}
       </div>
-    );
-  }
-  
-  export default AdminProfile;
-  
+    
+    </div>
+  );
+}
+export default AdminProfile;
