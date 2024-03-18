@@ -38,8 +38,8 @@ function routes() {
         <Route path="/editUser" element={<EditUser />} />
         <Route path="/listUsers" element={<ListUsers />} />
         <Route path="/createPlaylist" element={<CreatePlaylist />} />
-        <Route path="/deletePlaylist" element={<DeletePlaylist />} />
-        <Route path="/editPlaylist" element={<EditPlaylist />} />
+        <Route path="/deletePlaylist/:id" element={<DeletePlaylist />} />
+        <Route path="/editPlaylist/:id" element={<EditPlaylist />} />
         <Route path="/listPlaylist" element={<ListPlaylist />} />
       </Routes>
     </BrowserRouter>
