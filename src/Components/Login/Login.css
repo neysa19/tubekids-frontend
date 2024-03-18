@@ -1,44 +1,62 @@
-/* Estilos para el contenedor del formulario de inicio de sesión */
-.login-container {
+.login-container{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh; /* Toma toda la altura de la pantalla */
-  background-color: #fffefe; /* Fondo negro */
-  color: #000000; /* Texto blanco */
-
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 100vh; /* Establece la altura al 100% del viewport */
+  margin-bottom: 5%;
+  
+}
+.login-logo{
+  position: relative;
+  margin-left: -41.5%;
 }
 
-/* Estilos para el formulario de inicio de sesión */
-.login-form {
-  max-width: 400px;
-  width: 100%;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro semi-transparente */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  color: #ffffff; /* Texto blanco */
+.login-form-1{
+  padding: 3rem;
+  background: rgba(40, 39, 38, 0.8); /* Color de fondo semi-transparente */
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 1rem; /* Reducimos el radio de borde */
+  width: 400px; /* Ancho fijo del formulario */
 }
-
-/* Estilos para el botón de inicio de sesión */
-.btn-start {
-  width: 100%; /* Ancho completo del contenedor */
-  margin-top: 10px; /* Espacio superior */
-  padding: 8px 16px; /* Tamaño del botón */
-  font-size: 14px; /* Tamaño de fuente */
+input[type="text"],
+input[type="password"] {
+  margin-bottom: 10px; /* Añadimos margen inferior a los campos de texto */
+  padding: 0.5rem; /* Añadimos padding para mejorar la apariencia */
+  width: 100%; /* Ancho completo */
+  border-radius: 0.5rem; /* Borde redondeado */
+  border: 1px solid #1038ff; /* Borde con color */
 }
-
-/* Estilos para el botón de registro */
-.btn-register {
-  display: block;
+.login-form-1 h3{
   text-align: center;
-  margin-top: 5px; /* Espacio superior */
-  color: #007bff; /* Color azul */
-  font-size: 12px; /* Tamaño de fuente */
+  margin-bottom: 2rem; /* Reducimos el margen inferior */
+  color: #fff;
+  font-size: 50px;
+}
+.btnSubmit{
+  font-weight: 600;
+  width: 100%; /* Ancho completo del botón */
+  margin-top: 2px; /* Añadimos un margen superior */
+}
+.btnForgetPwd{
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+.btnForgetPwd:hover{
+  text-decoration:none;
+  color:#fff;
+}
+.btn-register {
+  margin-top: 1rem; /* Añadimos un margen superior */
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center; /* Centramos el texto */
+  width: 100%; /* Ancho completo del enlace */
+  display: block; /* Convertimos el enlace en un bloque para que ocupe todo el ancho */
 }
 
-.btn-register:hover {
+.btn-register:hover{
   text-decoration: none;
+  color: #1038ff;
 }

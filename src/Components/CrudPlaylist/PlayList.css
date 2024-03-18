@@ -1,0 +1,26 @@
+/* ListPlaylist.css */
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .card {
+    width: 48%; /* Ajusta el ancho de las tarjetas según tu diseño */
+  }
+  
+  .card-header {
+    font-size: 1.5rem;
+  }
+  
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+  h2 {
+    text-align: center; /* Centra el texto dentro del elemento h2 */
+
+    margin-bottom: 1%;
+  }

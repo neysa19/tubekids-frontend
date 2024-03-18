@@ -1,13 +1,9 @@
 .home-page-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #f8f9fa; /* Cambia el color de fondo según tu preferencia */
-    padding: 20px; /* Añade espacio alrededor del contenido */
-    text-align: center; /* Centra el texto horizontalmente */
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra verticalmente */
+  /* Otros estilos que puedas necesitar */
+}
   
   .btn-perfiles {
     display: inline-block;
