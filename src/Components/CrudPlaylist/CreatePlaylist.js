@@ -9,7 +9,7 @@ const CreatePlaylist = () => {
   const handleCreatePlaylist = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/playlist', { nombre, url,userId }); // Ruta para crear playlists
+      const response = await axios.post('http://localhost:3000/playlist', { nombre, url, userId }); // Ruta para crear playlists
       console.log(response.data);
       // Mostrar mensaje de éxito o redireccionar a otra página
     } catch (error) {
@@ -18,14 +18,14 @@ const CreatePlaylist = () => {
   };
 
   return (
-    <div>
-      <h2>Crear Playlist</h2>
-      <form onSubmit={handleCreatePlaylist}>
+    <div  className='playlists-container'>
+      <h1>Crear Playlist</h1>
+      <form className ='l-form' onSubmit={handleCreatePlaylist}>
         <label htmlFor="nombre">Nombre:</label>
-        <input type="text" id="nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
+        <input type="text" id="nombre"placeholder="Nombre del Video" value={nombre} onChange={(e) => setNombre(e.target.value)} required/>
         <label htmlFor="url">URL:</label>
-        <input type="text" id="url" value={url} onChange={(e) => setUrl(e.target.value)} />
-        <button type="submit">Crear Playlist</button>
+        <input type="text" id="url"placeholder="URL" value={url} onChange={(e) => setUrl(e.target.value)} required/>
+        <button type="submit" className="btn btn-secondary">Crear Playlist</button>
       </form>
     </div>
   );

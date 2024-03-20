@@ -4,6 +4,7 @@ import { Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import './HomePage.css';
+import swal from 'sweetalert';
 
 
 const HomePage = () => {
@@ -12,6 +13,23 @@ const HomePage = () => {
   const [showPinForm, setShowPinForm] = useState(false);
   const [selectedProfile, setSelectedProfile] = useState(null);
   const [showForm, setShowForm] = useState(false);
+
+
+  const mostrarAlertaSuccess = () => {
+    swal({
+      title: "El código fue enviado con éxito",
+      icon: "success",
+      button: "Aceptar"
+    });
+  }
+
+  const mostrarError = () => {
+    swal({
+      title: "Sus credenciales son inválidas",
+      icon: "warning",
+      button: "Aceptar"
+    });
+  }
 
   const userId = sessionStorage.getItem('userId');
   const navigate = useNavigate();
@@ -33,6 +51,7 @@ const HomePage = () => {
       sessionStorage.setItem('userId', response.data.userId);
       navigate('/adminProfile');
     } catch (error) {
+      mostrarError();
       console.error(error.response.data);
     }
   };
@@ -47,9 +66,11 @@ const HomePage = () => {
       if (response.data.success) {
         navigate('/listPlaylist');
       } else {
+        mostrarError();
         console.log('El PIN es incorrecto');
       }
     } catch (error) {
+      mostrarError();
       console.error(error.response.data);
     }
   };
@@ -70,9 +91,9 @@ const HomePage = () => {
   return (
     <Container className="home-page-container">
       <h1>Bienvenido</h1>
-      <p>¿Quién está viendo ahora?</p>
+      <h2>¿Quién está viendo ahora?</h2>
+      <h3>Lista de Perfiles</h3>
       <div className="admin-profile-container">
-        <h2>Lista de Perfiles</h2>
         <div className="profile-list">
           {profiles.map((profile) => (
             <div key={profile.id} className="profile-item">
@@ -92,14 +113,14 @@ const HomePage = () => {
                     value={pin}
                     onChange={(e) => setPin(e.target.value)}
                   />
-                  <button class="btn btn-light" type="submit">Confirmar</button>
+                  <button class="btn btn-outline-success" type="submit">Confirmar</button>
                 </form>
               )}
             </div>
           ))}
         </div>
       </div>
-      {showPinForm &&  (
+      {showPinForm && (
         <form onSubmit={handlePinConfirmation}>
           <input
             type="password"
@@ -107,13 +128,13 @@ const HomePage = () => {
             onChange={(e) => setPin(e.target.value)}
             placeholder="Ingresa tu PIN"
           />
-          <button class="btn btn-light" type="submit">Confirmar PIN</button>
+          <button class="btn btn-outline-success" type="submit">Confirmar PIN</button>
         </form>
       )}
       <Link
         to="#"
-        className="btn-perfiles btn btn-primary"
-        onClick={handleShowPinForm} 
+        className="btn btn-secondary"
+        onClick={handleShowPinForm}
       >
         Administrar Perfiles
       </Link>

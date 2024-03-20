@@ -14,7 +14,7 @@ function NavBar() {
 
   return (
     <div className="navbar-container">
-      <nav className="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-ligh bg-light navbar-expand-lg navbar-light bg-light">
         <div className="container">
           <Link className="navbar-brand" to="/">
             <i className="fab fa-linkedin fa-2x"></i>

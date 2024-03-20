@@ -13,7 +13,6 @@ import EditProfile from "../components/CrudProfile/EditProfile.js";
 import ListProfiles from "../components/CrudProfile/ListProfiles.js";
 
 import CreateUser from "../components/CrudUser/CreateUser.js";
-import DeleteUser from "../components/CrudUser/DeleteUser.js";
 import EditUser from "../components/CrudUser/EditUser.js";
 import ListUsers from "../components/CrudUser/Perfil.js";
 
@@ -41,8 +40,8 @@ function routes() {
         <Route path="/listProfiles" element={<ListProfiles />} />
 
         <Route path="/createUser" element={<CreateUser />} />
-        <Route path="/deleteUser" element={<DeleteUser />} />
-        <Route path="/editUser" element={<EditUser />} />
+   
+        <Route path="/editUser/:id" element={<EditUser />} />
         <Route path="/listUsers" element={<ListUsers />} />
 
         <Route path="/AdministrarPlaylist" element={<AdministrarPlaylist />} />

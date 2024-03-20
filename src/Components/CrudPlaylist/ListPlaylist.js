@@ -29,29 +29,29 @@ const ListPlaylist = () => {
   };
   return (
     <div>
-    <h2>Lista de Playlists</h2>
-    <div className="card-container">
-      {playlists.map(playlist => (
-        <div key={playlist._id} className="card text-white bg-dark mb-3 d-inline-block">
-          <div className="card-body">
-            <h5 className="card-header">{playlist.nombre}</h5>
-            <iframe
-              width="560"
-              height="315"
-              src={`https://www.youtube.com/embed/${getVideoIdFromUrl(playlist.url)}?controls=0&modestbranding=1&rel=0&showinfo=0&origin=http://localhost:3000`}
-              title={playlist.nombre}
-              frameBorder="0"
-              allowFullScreen
-              className="card-img-top"
-              alt="Playlist thumbnail"
-            ></iframe>
-            <div className="card-footer">
+      <h2>Lista de Playlists</h2>
+      <div className="card-container">
+        {playlists.map(playlist => (
+          <div key={playlist._id} className="card text-white bg-dark mb-3 d-inline-block">
+            <div className="card-body">
+              <h5 className="card-header">{playlist.nombre}</h5>
+              <iframe
+                width="560"
+                height="315"
+                src={`https://www.youtube.com/embed/${getVideoIdFromUrl(playlist.url)}?controls=0&modestbranding=1&rel=0&showinfo=0&origin=http://localhost:3000`}
+                title={playlist.nombre}
+                frameBorder="0"
+                allowFullScreen
+                className="card-img-top"
+                alt="Playlist thumbnail"
+              ></iframe>
+              <div className="card-footer">
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
 };
 export default ListPlaylist;

@@ -40,8 +40,11 @@ const AdminProfile = () => {
 
   return (
     <div className="admin-profile-container">
-      <h2>Lista de Perfiles</h2>
-      <Link to="/createProfile" className="btn btn-primary">Crear Perfil Nuevo</Link>
+    <h1>Lista de Perfiles</h1>
+    <div className="create-profile-btn">
+      <Link to="/createProfile" className="btn btn-secondary">Crear Perfil Nuevo</Link>
+    </div>
+    <div className="card-container">  
       <div className="profile-list">
         {profiles.map((profile) => (
           <div key={profile._id} className="profile-item">
@@ -49,14 +52,14 @@ const AdminProfile = () => {
             <p>Nombre: {profile.nombre}</p>
             <p>Edad: {profile.edad}</p>
             <div className="action-buttons">
-            <Link to={`/editProfile/${profile._id}`} className="btn btn-info">Editar</Link> {/* Redirige a la página de edición y pasa el ID del perfil */}
-              <button className="btn btn-danger" onClick={() => deleteProfile(profile._id)}>Eliminar</button>
+              <Link to={`/editProfile/${profile._id}`} className="btn btn-outline-success">Editar</Link>
+              <button type="button" className="btn btn-outline-danger" onClick={() => deleteProfile(profile._id)}>Eliminar</button>
             </div>
           </div>
         ))}
       </div>
-    
     </div>
+  </div>
   );
 }
 export default AdminProfile;

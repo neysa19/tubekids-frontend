@@ -1,8 +1,8 @@
-import React, { useState } from 'react'; 
-import axios from 'axios'; 
-import './Login.css'; 
-import { Link, useNavigate } from 'react-router-dom'; 
-import swal from 'sweetalert'; 
+import React, { useState } from 'react';
+import axios from 'axios';
+import './Login.css';
+import { Link, useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importa los estilos de Bootstrap
 import 'jquery/dist/jquery.min.js'; // Importa jQuery
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Importa los scripts de Bootstrap
@@ -31,7 +31,7 @@ const Login = () => {
   }
 
   const handleLogin = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     try {
       const response = await axios.post('http://localhost:3000/login', { email, password });
       sessionStorage.setItem("userId", response.data.userId);
@@ -39,10 +39,9 @@ const Login = () => {
       sessionStorage.setItem("nombre", response.data.nombre);
       sessionStorage.setItem("isLoggedIn", "true");
 
-
       navigate("/home");
     } catch (error) {
-      mostrarError(); 
+      mostrarError();
       console.error(error.response.data);
     }
   };
@@ -54,7 +53,7 @@ const Login = () => {
           <h3>Ingresar</h3>
           <Form className="login-form" onSubmit={handleLogin}>
             <Form.Group controlId="formEmail">
-              <Form.Control type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+              <Form.Control type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
             </Form.Group>
             <Form.Group controlId="formPassword">
               <Form.Control type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} required />

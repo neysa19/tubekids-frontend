@@ -1,12 +1,12 @@
 .navbar-container {
   margin-top: 10px;
-  margin-bottom: 5%;
+  margin-bottom: 1%;
 }
 
 .navbar-scroll .nav-link,
 .navbar-scroll .navbar-toggler-icon,
 .navbar-scroll .navbar-brand {
-  color: #ffffff;
+  color: #ad2929;
 }
 
 .navbar-scroll {
@@ -16,7 +16,7 @@
 .navbar-scrolled .nav-link,
 .navbar-scrolled .navbar-toggler-icon,
 .navbar-scroll .navbar-brand {
-  color: #262626;
+  color: #e6dede;
 }
 
 .navbar-scrolled {
@@ -34,11 +34,11 @@
 }
 
 .navbar {
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 15px 15px 15px rgba(194, 193, 193, 0.49);
 }
 
 .nav-link {
-  color: #ffffff; /* Cambia el color de los enlaces según tu diseño */
+  color: #050505; /* Cambia el color de los enlaces según tu diseño */
 }
 
 .nav-link.active {
@@ -46,13 +46,13 @@
 }
 
 .dropdown-menu {
-  background-color: #e0e0e0; /* Cambia el color de fondo del menú desplegable según tu diseño */
+  background-color: #ffffff; /* Cambia el color de fondo del menú desplegable según tu diseño */
 }
 
 
 .dropdown-menu a:hover {
   background-color: #f0f0f0; /* Cambia el color de fondo al pasar el ratón por encima del enlace */
-  color: #333; /* Cambia el color del texto al pasar el ratón por encima del enlace */
+  color: #093aff; /* Cambia el color del texto al pasar el ratón por encima del enlace */
 }
 
 .dropdown-menu a.dropdown-item.active,

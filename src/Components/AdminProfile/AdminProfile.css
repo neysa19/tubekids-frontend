@@ -1,0 +1,78 @@
+
+  .card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: auto;
+    width: 100%;
+    border-radius: 8px;
+   
+    flex-wrap: wrap;
+  }
+  
+  .profile-list {
+    display: flex;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+  }
+  
+  .profile-item {
+    border-radius: 8px;
+  }
+  .profile-item p{
+    border-radius: 8px;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    font-size: 15px;
+    font-family: 'Candara Light';
+  }
+  
+  .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  
+  }
+  
+  .action-buttons {
+    justify-content: space-between;
+    margin-top: 1%;
+  }
+  
+  
+  .btn-outline-secondary {
+    background-color: transparent;
+    border: 1px solid #007bff;
+    color: #007bff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: auto;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    margin-bottom: 15%;
+    padding-bottom: 15%;
+  }
+  
+  .admin-profile-container {
+    text-align: center;
+    padding: 20px;
+  }
+  .create-profile-btn {
+    margin-bottom: 5px;
+  }
+  .btn {
+    margin-right: 10px;
+  }
+ .admin-profile-container h1 {
+    font-size: 60px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.436);
+    font-family: 'Ink Free';
+    letter-spacing: 10px;
+    background-color: #ffffff;
+    display: inline-block;
+    margin-bottom: 0%;
+  }

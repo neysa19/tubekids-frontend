@@ -15,7 +15,8 @@
     width: 400px; /* Ancho fijo del formulario */
   }
   input[type="text"],
-  input[type="password"] {
+  input[type="password"]
+  input[type="number"] {
     margin-bottom: 10px; /* Añadimos margen inferior a los campos de texto */
     padding: 0.5rem; /* Añadimos padding para mejorar la apariencia */
     width: 100%; /* Ancho completo */

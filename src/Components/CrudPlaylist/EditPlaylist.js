@@ -44,15 +44,15 @@ const EditPlaylist = () => {
 
   return (
     <div className="container mt-4">
-      <h2 className="mb-4">Editar Playlist</h2>
+      <h1>Editar Playlist</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="nombre" className="form-label">Nombre:</label>
-          <input type="text" className="form-control" id="nombre" name="nombre" value={playlist.nombre} onChange={handleInputChange} />
+          <input type="text" className="form-control" id="nombre" name="nombre" value={playlist.nombre} onChange={handleInputChange} required />
         </div>
         <div className="mb-3">
           <label htmlFor="url" className="form-label">URL:</label>
-          <input type="text" className="form-control" id="url" name="url" value={playlist.url} onChange={handleInputChange} />
+          <input type="text" className="form-control" id="url" name="url" value={playlist.url} onChange={handleInputChange} required />
         </div>
         <button type="submit" className="btn btn-primary">Actualizar Playlist</button>
       </form>

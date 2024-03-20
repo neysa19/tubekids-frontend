@@ -3,9 +3,9 @@
   justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente */
   height: 100vh; /* Establece la altura al 100% del viewport */
-  margin-bottom: 5%;
-  
+  margin-bottom: 5%; 
 }
+
 .login-logo{
   position: relative;
   margin-left: -41.5%;
@@ -31,6 +31,7 @@ input[type="password"] {
   margin-bottom: 2rem; /* Reducimos el margen inferior */
   color: #fff;
   font-size: 50px;
+  background: none;
 }
 .btnSubmit{
   font-weight: 600;

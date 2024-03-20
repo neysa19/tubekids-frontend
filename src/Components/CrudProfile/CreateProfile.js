@@ -44,6 +44,11 @@ const CreateProfile = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
+        if (parseInt(edad) >= 18) {
+            mostrarError("Debes ser menor años para registrarte.");
+            return;
+        }
+
         try {
             const response = await axios.post('http://localhost:3000/registerProfile', { nombre, pin, edad, avatar, userId }); // Enviar avatar al backend
             console.log(response.data);
@@ -56,11 +61,11 @@ const CreateProfile = () => {
     };
 
     return (
-        <div className="container mt-4">
-            <h2 className="mb-4">Crear Perfil</h2>
+        <div className="profile-container">
+            <h1>Crear Perfil</h1>
             <div className="avatar-container">
                 <div className="selected-avatar">
-                    <img src={avatar} alt="Avatar seleccionado" className="img-thumbnail" style={{ maxWidth: '200px' }} />
+                    <img src={avatar} alt="Avatar seleccionado" className="avatar-select" style={{ maxWidth: '200px' }} />
                 </div>
                 <div className="avatar-list">
                     <img src={Recurso1} alt="Avatar 1" className="avatar-image" onClick={() => handleAvatarClick(Recurso1)} />
@@ -76,19 +81,19 @@ const CreateProfile = () => {
             <form onSubmit={handleRegister}>
                 <div className="mb-3">
                     <label htmlFor="nombre" className="form-label">Nombre:</label>
-                    <input type="text" className="form-control" id="nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
+                    <input type="text" className="form-control" id="nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} required />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="pin" className="form-label">PIN:</label>
-                    <input type="text" className="form-control" id="pin" value={pin} onChange={(e) => setPin(e.target.value)} />
+                    <input type="text" className="form-control" id="pin" value={pin} onChange={(e) => setPin(e.target.value)} pattern="\d{6}" required />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="edad" className="form-label">Edad:</label>
-                    <input type="number" className="form-control" id="edad" value={edad} onChange={(e) => setEdad(e.target.value)} />
+                    <input type="number" className="form-control" id="edad" value={edad} onChange={(e) => setEdad(e.target.value)} required />
                 </div>
-                <button type="submit" className="btn btn-primary">Crear Perfil</button>
+                <button type="submit" className="btn btn-secondary">Crear Perfil</button>
             </form>
-            <Link to="/adminProfile" className="link-underline-primary mt-3">Ya tengo un perfil</Link>
+            <Link to="/adminProfile" className="btn btn-regreso">Ya tengo un perfil</Link>
         </div>
     );
 };
