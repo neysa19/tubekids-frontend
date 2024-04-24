@@ -10,8 +10,9 @@ import { Container, Form, Button } from 'react-bootstrap';
 
 const Login = () => {
   const [email, setEmail] = useState('');
-  const [nombre, setNombre] = useState('');
   const [password, setPassword] = useState('');
+  const phoneNumber = sessionStorage.getItem("phone");
+
   const navigate = useNavigate();
 
   const mostrarAlertaSuccess = () => {
@@ -30,16 +31,36 @@ const Login = () => {
     });
   }
 
+  const sendCode = async () => {
+    try {
+      await axios.post('http://localhost:3000/sendVerificationCode', { phoneNumber });
+      mostrarAlertaSuccess();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:3000/login', { email, password });
+      sessionStorage.setItem("validacion", response.data.validacion);
+      sessionStorage.setItem("phone", response.data.phone);
+
       sessionStorage.setItem("userId", response.data.userId);
       sessionStorage.setItem("email", email);
       sessionStorage.setItem("nombre", response.data.nombre);
       sessionStorage.setItem("isLoggedIn", "true");
-
-      navigate("/home");
+      if (sessionStorage.getItem("validacion") === "Activa") {
+        sendCode(e);
+        sessionStorage.setItem("token", response.data.token);
+        sessionStorage.setItem("name", response.data.name);
+        navigate("/validarSMS");
+      } else if (sessionStorage.getItem("validacion") !== "Desactiva") {
+        sessionStorage.setItem("token", response.data.token);
+        sessionStorage.setItem("name", response.data.name);
+        navigate("/home");
+      }
     } catch (error) {
       mostrarError();
       console.error(error.response.data);

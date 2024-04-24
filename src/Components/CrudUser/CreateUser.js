@@ -8,6 +8,7 @@ import './User.css';
 const CreateUser = () => {
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
+  const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [pin, setPin] = useState('');
   const [password, setPassword] = useState('');
@@ -33,11 +34,25 @@ const CreateUser = () => {
     });
   };
 
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:3000/sendEmail', { email })
+    } catch (error) {
+
+      console.error(error.response.data);
+    }
+  };
+
+
   const handleRegister = async (e) => {
     e.preventDefault();
+    sendEmail(e);
+
     const hoy = new Date();
     const fechaNacimiento = new Date(fechanacimiento);
     const edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+
     if (edad < 18) {
       mostrarError("Deber ser mayor de 18 años")
       return;
@@ -82,6 +97,11 @@ const CreateUser = () => {
           <Form.Group controlId="formEmail">
             <Form.Label>Email:</Form.Label>
             <Form.Control type="email" placeholder="Ingresa tu email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          </Form.Group>
+
+          <Form.Group controlId="formPhone">
+            <Form.Label>Telefono:</Form.Label>
+            <Form.Control type="text" placeholder="Ingresa tu telefono" value={phone} onChange={(e) => setPhone(e.target.value)} required />
           </Form.Group>
 
           <Form.Group controlId="formPin">

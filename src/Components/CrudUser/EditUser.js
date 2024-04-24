@@ -9,6 +9,7 @@ const EditUser = () => {
     const [user, setUser] = useState({
         nombre: '',
         apellidos: '',
+        phone:  '',
         email: '',
         pais: '',
         fechanacimiento: '',
@@ -62,6 +63,11 @@ const EditUser = () => {
                     <Form.Group controlId="formEmail">
                         <Form.Label>Email:</Form.Label>
                         <Form.Control type="email" placeholder="Ingresa tu email" value={user.email} onChange={handleInputChange} name="email" />
+                    </Form.Group>
+                    
+                    <Form.Group controlId="formPhone">
+                        <Form.Label>Telefono:</Form.Label>
+                        <Form.Control type="text" placeholder="Ingresa tu telefono" value={user.phone} onChange={handleInputChange} name="phone" />
                     </Form.Group>
 
                     <Form.Group controlId="formPais">

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './AdminProfile.css';
 import { Link, useNavigate } from 'react-router-dom';

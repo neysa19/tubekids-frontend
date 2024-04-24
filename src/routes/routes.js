@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "../components/HomePage/HomePage.js";
 import NavBar from "../components/NavBar/NavBar.js";
 import AboutPage from "../components/About/About.js";
-import Login from '../components/Login/Login.js';
+import Login from '../components/LoginN/Login.js';
 
 import AdminProfile from "../components/AdminProfile/AdminProfile.js";
 import CreateProfile from "../components/CrudProfile/CreateProfile.js";
@@ -21,6 +21,13 @@ import DeletePlaylist from "../components/CrudPlaylist/DeletePlaylist.js";
 import EditPlaylist from "../components/CrudPlaylist/EditPlaylist.js";
 import ListPlaylist from "../components/CrudPlaylist/ListPlaylist.js";
 import AdministrarPlaylist from "../components/CrudPlaylist/AdministrarPlaylist.js";
+
+import CreateVideo from "../components/CrudVideo/CreateVideo.js";
+import DeleteVideo from "../components/CrudVideo/DeleteVideo.js";
+import EditVideo from "../components/CrudVideo/EditVideo.js";
+import ListVideo from "../components/CrudVideo/ListVideo.js";
+import AdministrarVideo from "../components/CrudVideo/AdministrarVideo.js";
+
 
 function routes() {
   const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true";
@@ -49,6 +56,14 @@ function routes() {
         <Route path="/deletePlaylist/:id" element={<DeletePlaylist />} />
         <Route path="/editPlaylist/:id" element={<EditPlaylist />} />
         <Route path="/listPlaylist" element={<ListPlaylist />} />
+
+
+        <Route path="/AdministrarVideo" element={<AdministrarVideo />} />
+        <Route path="/createVideo/:id" element={<CreateVideo/>} />
+        <Route path="/deleteVideo/:id" element={<DeleteVideo />} />
+        <Route path="/editVideo/:id" element={<EditVideo />} />
+        <Route path="/listVideo" element={<ListVideo />} />
+
 
       </Routes>
       

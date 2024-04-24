@@ -1,0 +1,40 @@
+.playlists-container {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin-bottom: 5%;
+  text-align: center;
+
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.card {
+  width: 48%;
+}
+
+.card-header {
+  font-size: 1.5rem;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.l-form {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 3rem;
+  background: rgba(40, 39, 38, 0.8);
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 1rem;
+  width: 400px;
+
+}
