@@ -18,7 +18,6 @@ const ListPlaylist = () => {
   }, []);
 
 
-
   const handleDeletePlaylist = async (playlistId) => {
     try {
       await axios.delete(`http://localhost:3000/playlist/${playlistId}`);
@@ -36,12 +35,12 @@ const ListPlaylist = () => {
     <div className='playlists-container'>
       <h1>Lista de Playlists</h1>
       <Link to="/createPlaylist" className="btn btn-secondary">Crear Playlist</Link>
+
       <div className="card-container">
         {playlists.map(playlist => (
           <div key={playlist._id} className="card text-black bg-ligh  ">
             <div className="card-body">
               <h5 className="card-header">{playlist.nombre}</h5>
-           
               <div className="card-footer">
                 <button type="button" className="btn btn-outline-danger" onClick={() => handleDeletePlaylist(playlist._id)}>Eliminar</button>
                 <button type="button" className="btn btn-outline-success" onClick={() => handleEditPlaylist(playlist._id)}>Configurar</button>
@@ -50,6 +49,8 @@ const ListPlaylist = () => {
           </div>
         ))}
       </div>
+
+
     </div>
   );
 };

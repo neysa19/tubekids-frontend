@@ -61,7 +61,7 @@ function routes() {
         <Route path="/AdministrarVideo" element={<AdministrarVideo />} />
         <Route path="/createVideo/:id" element={<CreateVideo/>} />
         <Route path="/deleteVideo/:id" element={<DeleteVideo />} />
-        <Route path="/editVideo/:id" element={<EditVideo />} />
+        <Route path="/editvideo/:id/:playlistId" element={<EditVideo />} />
         <Route path="/listVideo" element={<ListVideo />} />
 
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate   } from 'react-router-dom';
 
 
 const CreateVideo = () => {
@@ -8,6 +8,7 @@ const CreateVideo = () => {
   const [url, setUrl] = useState('');
   const [playlistId, setPlaylistId] = useState('');
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -16,7 +17,7 @@ const CreateVideo = () => {
       console.log(id)
       const response = await axios.post('http://localhost:3000/video', { nombre, url, playlistId: id });
       console.log(response.data);
-      // Aquí podrías redirigir a la página de la lista de reproducción o mostrar un mensaje de éxito
+     
     } catch (error) {
       console.error('Error al crear el video:', error);
       // Aquí podrías mostrar un mensaje de error al usuario
@@ -35,7 +36,6 @@ const CreateVideo = () => {
           <label htmlFor="url" className="form-label">URL del Video</label>
           <input type="text" className="form-control" id="url" value={url} onChange={(e) => setUrl(e.target.value)} />
         </div>
-       
         <button type="submit" className="btn btn-primary">Crear Video</button>
       </form>
     </div>
