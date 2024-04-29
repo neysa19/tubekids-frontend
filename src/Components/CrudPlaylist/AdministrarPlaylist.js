@@ -8,15 +8,33 @@ const ListPlaylist = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/playlists/${userId}`)
-      .then(response => {
-        setPlaylists(response.data);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  }, []);
+    const fetchData = async () => {
+      debugger
+      if (!userId) return; // Si userId es null, no ejecutar la consulta
+      const body = `
+     query {
+        PlaylistsPorUsuario(userId: "${userId}") {
+        _id
+        nombre
+        userId
+      }
+    }
+    `;
+      try {
+        const response = await axios.post('http://localhost:3002/graphql', { query: body }, {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`
+          }
+        });
 
+
+        setPlaylists(response.data.data.PlaylistsPorUsuario); // Guardar los resultados en el estado
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, [userId]);
 
   const handleDeletePlaylist = async (playlistId) => {
     try {

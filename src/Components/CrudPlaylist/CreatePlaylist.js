@@ -8,6 +8,9 @@ const CreatePlaylist = () => {
   const [userId, setUserId] = useState(sessionStorage.getItem("userId") || '');
   const [profiles, setProfiles] = useState([]);
   const [selectedProfiles, setSelectedProfiles] = useState('');
+  const [submitDisabled, setSubmitDisabled] = useState(true);
+  const [message, setMessage] = useState(''); // Estado para el mensaje
+
 
   const navigate = useNavigate();
 
@@ -15,9 +18,18 @@ const CreatePlaylist = () => {
     e.preventDefault();
     try {
       debugger
-      const response = await axios.post('http://localhost:3000/playlist', { nombre, userId, profileIds: selectedProfiles }); // Cambiar profileId a profileIds
+      const response = await axios.post('http://localhost:3000/playlist', { nombre, userId, profileIds: selectedProfiles }, { // Cambiar profileId a profileIds
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token")
+        }
+      });
+
       console.log(response.data);
+
       navigate('/AdministrarPlaylist');
+
+
+
     } catch (error) {
       console.error('Error creating playlist:', error);
     }
@@ -28,6 +40,14 @@ const CreatePlaylist = () => {
       .then((response) => {
         console.log(response.data);
         setProfiles(response.data);
+        // Verificar si hay perfiles disponibles
+        if (response.data.length === 0) {
+          setMessage('No puede crear una playlist si no tiene perfiles.'); // Establecer el mensaje
+          setSubmitDisabled(true); // Deshabilitar el botón de envío
+        } else {
+          setMessage(''); // Borrar el mensaje si hay perfiles disponibles
+          setSubmitDisabled(false); // Habilitar el botón de envío
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -37,6 +57,7 @@ const CreatePlaylist = () => {
 
   return (
     <div className='playlists-container'>
+      {message && <p>{message}</p>} {/* Mostrar el mensaje si está presente */}
       <h1>Crear Playlist</h1>
       <form className='l-form' onSubmit={handleCreatePlaylist}>
         <label htmlFor="nombre">Nombre:</label>

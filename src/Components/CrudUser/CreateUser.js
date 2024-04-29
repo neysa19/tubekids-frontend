@@ -69,7 +69,7 @@ const CreateUser = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/register', { nombre, apellido, email, pin, password, pais, fechanacimiento });
+      const response = await axios.post('http://localhost:3000/register', { nombre, apellido, email, pin, password, pais, fechanacimiento ,phone});
       console.log(response.data);
       mostrarAlertaSuccess();
       navigate("/");

@@ -1,22 +1,29 @@
 import React, { useState, useEffect } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
-import '../CrudPlaylist/PlayList.css';
 
-const ListPlaylist = () => {
-  const [playlists, setPlaylists] = useState([]);
-  const userId = sessionStorage.getItem('userId');
+const ListVideo = () => {
+  const { id } = useParams(); // Obtener el ID de la playlist de los parámetros de la URL
+  const [videos, setVideos] = useState([]);
+  const playlistId = id;
   const navigate = useNavigate();
+  console.log("playlistId in EditPlaylist:", playlistId); // Verifica si playlistId está definido aquí
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/video/${userId}`)
-      .then(response => {
-        setPlaylists(response.data);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  }, []);
+    // Función para obtener los videos por ID de la playlist
+    const obtenerVideosPorPlaylistId = async () => {
+      console.log(id)
+      try {
+        const response = await axios.get(`http://localhost:3000/videos/playlist/${id}`);
+        setVideos(response.data);
+
+      } catch (error) {
+        console.error('Error al obtener los videos de la playlist:', error);
+      }
+    };
+
+    obtenerVideosPorPlaylistId(id); // Llamar a la función para obtener los videos al cargar el componente
+  }, [id]);
 
   const getVideoIdFromUrl = (url) => {
     const videoId = url.split('v=')[1];
@@ -27,26 +34,34 @@ const ListPlaylist = () => {
       return videoId;
     }
   };
+  const handleSearchClick = () => {
+    console.log (playlistId);
+    navigate(`/searchVideo/${playlistId}`);
+  };
+  
   return (
-    <div>
-      <h2>Lista de Playlists</h2>
+    <div className="container mt-4">
+      <h1>Lista de Videos</h1>
+      <div>
+        <button className="btn btn-primary" onClick={handleSearchClick}>Buscar Videos</button>
+      </div>
+
+      <Link to={`/createVideo/${id}`} className="btn btn-secondary">Agregar Video</Link>
       <div className="card-container">
-        {playlists.map(playlist => (
-          <div key={playlist._id} className="card text-white bg-dark mb-3 d-inline-block">
+        {videos.map((video) => (
+          <div key={video._id} className="card text-black bg-ligh ">
             <div className="card-body">
-              <h5 className="card-header">{playlist.nombre}</h5>
+              <h3 className="card-header">{video.nombre}</h3>
+              {/* Mostrar el reproductor de video con el ID obtenido de la URL */}
               <iframe
                 width="560"
                 height="315"
-                src={`https://www.youtube.com/embed/${getVideoIdFromUrl(playlist.url)}?controls=0&modestbranding=1&rel=0&showinfo=0&origin=http://localhost:3000`}
-                title={playlist.nombre}
+                src={`https://www.youtube.com/embed/${getVideoIdFromUrl(video.url)}`}
                 frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-                className="card-img-top"
-                alt="Playlist thumbnail"
               ></iframe>
-              <div className="card-footer">
-              </div>
+              
             </div>
           </div>
         ))}
@@ -54,4 +69,5 @@ const ListPlaylist = () => {
     </div>
   );
 };
-export default ListPlaylist;
+
+export default ListVideo;

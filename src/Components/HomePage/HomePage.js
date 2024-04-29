@@ -35,14 +35,39 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/getProfilesByUserId/${userId}`)
-      .then((response) => {
-        setProfiles(response.data);
-      })
-      .catch((error) => {
+    const fetchData = async () => {
+      if (!userId) return; // Si userId es null, no ejecutar la consulta
+      const body = `
+        query {
+          GetAll(userId: "${userId}") {
+            _id
+            nombre
+            avatar
+            edad
+            userId
+          }
+        }
+      `;
+      try {
+        const response = await axios.post('http://localhost:3002/graphql', { query: body }
+          , {
+            headers: {
+              Authorization: `Bearer ${sessionStorage.getItem("token")}`
+            }
+          });
+
+        if (response.data && response.data.data && response.data.data.GetAll) {
+          setProfiles(response.data.data.GetAll); // Guardar los resultados en el estado
+        } else {
+          setProfiles([]); // Si no hay resultados, establecer el estado en un arreglo vacío
+        }
+      } catch (error) {
         console.error(error);
-      });
+      }
+    };
+    fetchData();
   }, [userId]);
+
 
   const handlePinConfirmation = async (e) => {
     e.preventDefault();
@@ -60,11 +85,11 @@ const HomePage = () => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:3000/checkPinProfile ', { nombre: selectedProfile.nombre, pin });
-      console.log(selectedProfile.nombre);
-      console.log(pin);
 
       if (response.data.success) {
-        navigate('/listPlaylist');
+        navigate(`/listPlaylist/${selectedProfile._id}`);
+
+
       } else {
         mostrarError();
         console.log('El PIN es incorrecto');
@@ -96,7 +121,7 @@ const HomePage = () => {
       <div className="admin-profile-container">
         <div className="profile-list">
           {profiles.map((profile) => (
-            <div key={profile.id} className="profile-item">
+            <div key={profile._id} className="profile-item">
               <img
                 src={profile.avatar}
                 alt="Avatar"

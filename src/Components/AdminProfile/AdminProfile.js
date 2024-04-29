@@ -8,22 +8,46 @@ import './AdminProfile.css';
 const AdminProfile = () => {
   const [profiles, setProfiles] = useState([]);
 
+
   const userId = sessionStorage.getItem('userId'); 
   console.log(userId);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/getProfilesByUserId/${userId}`) // Agregar userId a la URL
-      .then((response) => {
-        console.log(response.data);
-        setProfiles(response.data);
-      })
-      .catch((error) => {
+    const fetchData = async () => {
+      if (!userId) return; // Si userId es null, no ejecutar la consulta
+      const body = `
+        query {
+          GetAll(userId: "${userId}") {
+            _id
+            nombre
+            avatar
+            edad
+            userId
+          }
+        }
+      `;
+      try {
+        const response = await axios.post('http://localhost:3002/graphql', { query: body }
+        , {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`
+          }
+        });
+
+        if (response.data && response.data.data && response.data.data.GetAll) {
+          setProfiles(response.data.data.GetAll); // Guardar los resultados en el estado
+        } else {
+          setProfiles([]); // Si no hay resultados, establecer el estado en un arreglo vacío
+        }
+      } catch (error) {
         console.error(error);
-      });
+      }
+    };
+    fetchData();
   }, [userId]);
-  
+
 
   const deleteProfile = async (id) => {
     try {

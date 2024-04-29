@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link,useNavigate } from 'react-router-dom';
-import './validateSMS.css';
+import './ValidateSMS.css';
 import sweet from 'sweetalert';
 
 
@@ -38,7 +38,7 @@ const ValidarSMS = () => {
     try {
       const response = await axios.post('http://localhost:3000/verifyCode', { phoneNumber, code });
       monstrarAlertaSucess();
-      navigate("/HomePage");
+      navigate("/home");
     } catch (error) {
       monstrarError();
       console.error(error);

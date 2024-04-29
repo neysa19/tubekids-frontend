@@ -7,8 +7,7 @@ const EditPlaylist = () => {
   const [videos, setVideos] = useState([]);
   const playlistId = id;
   const navigate = useNavigate();
-  console.log("playlistId in EditPlaylist:", playlistId); // Verifica si playlistId está definido aquí
-
+  
   useEffect(() => {
     // Función para obtener los videos por ID de la playlist
     const obtenerVideosPorPlaylistId = async () => {
@@ -67,7 +66,7 @@ const EditPlaylist = () => {
             ></iframe>
             <div className="card-footer">
                 <button type="button" className="btn btn-outline-danger" onClick={() => eliminarVideo(video._id)} >Eliminar</button>
-                <button type="button" className="btn btn-outline-success" onClick={() => handleEditPlaylist(video._id,playlistId)}  >Editar</button>
+                <button type="button" className="btn btn-outline-success" onClick={() => handleEditPlaylist(video._id, playlistId)}  >Editar</button>
               </div>
           </div>
           </div>

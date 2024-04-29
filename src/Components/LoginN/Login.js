@@ -42,30 +42,36 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    debugger
     try {
       const response = await axios.post('http://localhost:3000/login', { email, password });
-      sessionStorage.setItem("validacion", response.data.validacion);
-      sessionStorage.setItem("phone", response.data.phone);
-
-      sessionStorage.setItem("userId", response.data.userId);
-      sessionStorage.setItem("email", email);
-      sessionStorage.setItem("nombre", response.data.nombre);
-      sessionStorage.setItem("isLoggedIn", "true");
-      if (sessionStorage.getItem("validacion") === "Activa") {
-        sendCode(e);
-        sessionStorage.setItem("token", response.data.token);
-        sessionStorage.setItem("name", response.data.name);
-        navigate("/validarSMS");
-      } else if (sessionStorage.getItem("validacion") !== "Desactiva") {
-        sessionStorage.setItem("token", response.data.token);
-        sessionStorage.setItem("name", response.data.name);
-        navigate("/home");
+      if (response && response.data) { 
+        sessionStorage.setItem("validacion", response.data.validacion);
+        sessionStorage.setItem("phone", response.data.phone);
+        sessionStorage.setItem("userId", response.data.userId);
+        sessionStorage.setItem("email", email);
+        sessionStorage.setItem("nombre", response.data.nombre);
+        sessionStorage.setItem("isLoggedIn", "true");
+        if (sessionStorage.getItem("validacion") === "Activa") {
+          sendCode(e);
+          sessionStorage.setItem("token", response.data.token);
+          sessionStorage.setItem("nombre", response.data.nombre);
+          navigate("/validarSMS");
+        } else if (sessionStorage.getItem("validacion") !== "Desactiva") {
+          sessionStorage.setItem("token", response.data.token);
+          sessionStorage.setItem("nombre", response.data.name);
+          navigate("/home");
+        }
+      } else {
+        mostrarError();
+        console.error("La respuesta no tiene el formato esperado:", response);
       }
     } catch (error) {
       mostrarError();
-      console.error(error.response.data);
+      console.error("Error al iniciar sesión:", error);
     }
   };
+  
 
   return (
     <Container className="login-container">

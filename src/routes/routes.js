@@ -27,6 +27,10 @@ import DeleteVideo from "../components/CrudVideo/DeleteVideo.js";
 import EditVideo from "../components/CrudVideo/EditVideo.js";
 import ListVideo from "../components/CrudVideo/ListVideo.js";
 import AdministrarVideo from "../components/CrudVideo/AdministrarVideo.js";
+import SearchVideos from "../components/CrudVideo/SearchVideo.js";
+
+import ValidarSMS from "../components/Validacion/ValidarSMS.js";
+
 
 
 function routes() {
@@ -55,17 +59,19 @@ function routes() {
         <Route path="/createPlaylist" element={<CreatePlaylist />} />
         <Route path="/deletePlaylist/:id" element={<DeletePlaylist />} />
         <Route path="/editPlaylist/:id" element={<EditPlaylist />} />
-        <Route path="/listPlaylist" element={<ListPlaylist />} />
+        <Route path="/listPlaylist/:profileId" element={<ListPlaylist />} />
 
 
         <Route path="/AdministrarVideo" element={<AdministrarVideo />} />
         <Route path="/createVideo/:id" element={<CreateVideo/>} />
         <Route path="/deleteVideo/:id" element={<DeleteVideo />} />
         <Route path="/editvideo/:id/:playlistId" element={<EditVideo />} />
-        <Route path="/listVideo" element={<ListVideo />} />
+        <Route path="/listVideo/:id" element={<ListVideo />} />
+        <Route path="/searchVideo/:playlistId" element={<SearchVideos />} />
 
 
-      </Routes>
+        <Route path="/validarSMS" element={<ValidarSMS />} />
+</Routes>
       
   /</BrowserRouter>
   );
